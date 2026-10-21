@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Otomatik Sayfa Yenileyici",
+  "version": "2.1",
+  "description": "Belirlediğiniz sürede sekmeyi otomatik yeniler. Duraklat, rastgele aralık, geri sayım ve daha fazlası.",
+  "permissions": ["storage"],
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": { "default_popup": "popup.html", "default_title": "Otomatik Yenile" },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_idle" }
+  ],
+  "commands": {
+    "toggle-refresh": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "Bu sekmede otomatik yenilemeyi aç/kapat"
+    }
+  }
+}

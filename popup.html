@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, sans-serif; width: 300px; padding: 14px; margin: 0; font-size: 13px; }
+  h1 { font-size: 15px; margin: 0 0 10px; }
+  .chips { display: flex; gap: 5px; margin-bottom: 10px; }
+  .chips button { flex: 1; padding: 4px 0; font-size: 12px; border: 1px solid #8884; background: #8882; color: inherit; border-radius: 12px; cursor: pointer; }
+  .row { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
+  .row label.t { width: 52px; }
+  input[type=number] { flex: 1; min-width: 0; padding: 5px; font-size: 14px; }
+  select { padding: 5px; font-size: 14px; }
+  .opt { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; cursor: pointer; }
+  .btns { display: flex; gap: 6px; margin-top: 10px; }
+  .btns button { flex: 1; padding: 9px 0; font-size: 13px; border: 0; border-radius: 6px; cursor: pointer; color: #fff; font-weight: 600; }
+  .btns button:disabled { opacity: .35; cursor: not-allowed; }
+  #start { background: #2e7d32; }
+  #pause { background: #ef8f00; }
+  #stop { background: #c62828; }
+  #box { margin-top: 12px; padding: 10px; border-radius: 8px; background: #8882; text-align: center; }
+  #count { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  #status { font-size: 12px; opacity: .8; margin-top: 2px; }
+  .hint { font-size: 11px; opacity: .65; margin-top: 8px; text-align: center; }
+</style>
+</head>
+<body>
+  <h1>⟳ Otomatik Sayfa Yenileyici</h1>
+
+  <div class="chips">
+    <button data-v="10" data-u="1">10 sn</button>
+    <button data-v="30" data-u="1">30 sn</button>
+    <button data-v="1" data-u="60">1 dk</button>
+    <button data-v="5" data-u="60">5 dk</button>
+    <button data-v="15" data-u="60">15 dk</button>
+  </div>
+
+  <div class="row">
+    <label class="t" for="val" id="lblMin">Süre</label>
+    <input id="val" type="number" min="1" value="30">
+    <select id="unit">
+      <option value="1">saniye</option>
+      <option value="60">dakika</option>
+    </select>
+  </div>
+  <div class="row" id="maxRow" hidden>
+    <label class="t" for="maxVal">En çok</label>
+    <input id="maxVal" type="number" min="1" value="60">
+    <span id="maxUnit">saniye</span>
+  </div>
+
+  <label class="opt"><input type="checkbox" id="infinite" checked> ∞ Sonsuza kadar yenile (durdurana kadar)</label>
+  <div class="row" id="limitRow" hidden>
+    <label class="t" for="limit">Tekrar</label>
+    <input id="limit" type="number" min="1" value="10">
+    <span>kez yenilenince dur</span>
+  </div>
+  <label class="opt"><input type="checkbox" id="random"> Rastgele aralık (her seferinde farklı süre)</label>
+  <label class="opt"><input type="checkbox" id="hard"> Önbelleği atla (sert yenileme)</label>
+  <label class="opt"><input type="checkbox" id="skipTyping" checked> Yazı yazılırken yenileme</label>
+
+  <div class="btns">
+    <button id="start">▶ Başlat</button>
+    <button id="pause" disabled>⏸ Duraklat</button>
+    <button id="stop" disabled>■ Durdur</button>
+  </div>
+
+  <div id="box">
+    <div id="count">--:--</div>
+    <div id="status">Kapalı</div>
+  </div>
+  <div class="hint">Kısayol: Alt+Shift+R (aç/kapat)</div>
+  <script src="popup.js"></script>
+</body>
+</html>
